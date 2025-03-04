@@ -206,10 +206,12 @@
                                 <h3>Setting</h3>
                             </li>
                             <li>
-                                <a class="side-menu__item has-link" href="">
+                                @if(auth()->user()->hasPermissionTo('create-role'))
+                                <a class="side-menu__item has-link" href="{{ route('roles.index') }}">
                                     <i class="side-menu__icon fe fe-zap"></i>
                                     <span class="side-menu__label">Roles</span>
                                 </a>
+                                @endif
                             </li>
                     </div>
                 </div>
