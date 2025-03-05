@@ -29,11 +29,11 @@
 
                         <!-- PAGE-HEADER -->
                         <div class="page-header">
-                            <h1 class="page-title">Patient List</h1>
+                            <h1 class="page-title">Users List</h1>
                             <div>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Patient List</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Users List</li>
                                 </ol>
                             </div>
 
@@ -78,6 +78,16 @@
 
 @section('js')
     <script>
+        $(document).ready(function() {
+            @if (Session::has('success'))
+                toastr.success("{{ Session::get('success') }}");
+            @endif
+
+            @if (Session::has('error'))
+                toastr.error("{{ Session::get('error') }}");
+            @endif
+        });
+
         $(document).ready(function() {
             $('#users-table').DataTable({
                 processing: true,

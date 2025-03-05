@@ -26,7 +26,7 @@ class UsersUpdateRequest extends FormRequest
             'last_name' => 'required',
             'email' => 'required',
             'address' => 'required',
-            'phone' => 'required',
+            'phone' => 'required | min:10',
             'age' => 'required',
             'role' => 'required',
         ];

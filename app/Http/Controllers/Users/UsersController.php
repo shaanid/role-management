@@ -24,10 +24,17 @@ class UsersController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $view = '<a href="' . route('users.edit', $data->id) . '" class="btn btn-primary"><i class="fe fe-eye"></i></a>';
-                $delete = '<a href="' . route('users.destroy', $data->id) . '" class="btn btn-primary"><i class="fe fe-trash-2"></i></a>';
+                $edit = '';
+                $delete = '';
 
-                return $view . ' ' . $delete;
+                if(auth()->user()->hasPermissionTo('edit-user')){
+                    $edit = '<a href="' . route('users.edit', $data->id) . '" class="btn btn-primary"><i class="fe fe-edit-2"></i></a>';
+                }
+                if(auth()->user()->hasPermissionTo('delete-user')){
+                    $delete = '<a href="' . route('users.destroy', $data->id) . '" class="btn btn-primary" onclick="return confirm(\'Are you sure you want to delete this user?\')"><i class="fe fe-trash-2"></i></a>';
+                }
+
+                return $edit . ' ' . $delete;
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -54,7 +61,7 @@ class UsersController extends Controller
             ]);
             $user->assignRole($request->role);
 
-            return redirect()->back()->with('success', "Successfully creeated the user");
+            return redirect()->route('users.index')->with('success', "Successfully creeated the user");
         } catch (\Throwable $th) {
             info($th);
             return redirect()->back()->with('error', "Something went wrong");
@@ -84,7 +91,7 @@ class UsersController extends Controller
                 $user->assignRole($request->role);
             }
 
-            return redirect()->back()->with('success', "User updated successfully");
+            return redirect()->route('users.index')->with('success', "User updated successfully");
         } catch (\Throwable $th) {
             info($th);
             return redirect()->back()->with('error', "Something went wrong");
@@ -95,6 +102,6 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        return redirect()->back()->with('success', "Successfully deleted");
+        return redirect()->back()->with('success', "Deleted successfully");
     }
 }

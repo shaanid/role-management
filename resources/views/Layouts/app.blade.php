@@ -131,7 +131,7 @@
                                                 <a class="dropdown-item" href="#">
                                                     <i class="dropdown-icon fe fe-user"></i> Profile
                                                 </a>
-                                                <a class="dropdown-item" href="#">
+                                                <a class="dropdown-item" href="{{ route('auth.index') }}">
                                                     <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
                                                 </a>
                                             </div>
@@ -189,12 +189,16 @@
                                                     <ul class="sidemenu-list">
                                                         <li class="side-menu-label1"><a
                                                                 href="javascript:void(0)">Apps</a></li>
+                                                        @if(auth()->user()->hasPermissionTo('add-user'))
                                                         <li><a href="{{ route('users.create') }}"
                                                                 class="slide-item">Add</a>
                                                         </li>
+                                                        @endif
+                                                        @if(auth()->user()->hasPermissionTo('list-user'))
                                                         <li><a href="{{ route('users.index') }}"
                                                                 class="slide-item">List</a>
                                                         </li>
+                                                        @endif
                                                     </ul>
                                                 </div>
                                             </div>
@@ -206,7 +210,7 @@
                                 <h3>Setting</h3>
                             </li>
                             <li>
-                                @if(auth()->user()->hasPermissionTo('create-role'))
+                                @if(auth()->user()->hasPermissionTo('list-role'))
                                 <a class="side-menu__item has-link" href="{{ route('roles.index') }}">
                                     <i class="side-menu__icon fe fe-zap"></i>
                                     <span class="side-menu__label">Roles</span>

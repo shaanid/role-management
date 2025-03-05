@@ -47,6 +47,9 @@
                                             <input type="text" id="first_name"
                                                 value="{{ old('first_name', $user->first_name) }}"
                                                 class="form-control border-dark" name="first_name" />
+                                                @error('first_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
                                             <label class="form-label">Last Name<span class="" style="color: red">
@@ -54,12 +57,18 @@
                                             <input type="text" id="last_name"
                                                 value="{{ old('last_name', $user->last_name) }}"
                                                 class="form-control  border-dark" name="last_name" />
+                                                @error('last_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
                                             <label class="form-label">Email<span class="" style="color: red">
                                                     *</span></label>
                                             <input type="text" id="email" value="{{ old('email', $user->email) }}"
                                                 class="form-control  border-dark" name="email" />
+                                                @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
                                             <label class="form-label">Address<span class="" style="color: red">
@@ -67,18 +76,27 @@
                                             <input type="text" id="address"
                                                 value="{{ old('address', $user->address) }}"
                                                 class="form-control  border-dark" name="address" />
+                                                @error('address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
                                             <label class="form-label">Phone<span class="" style="color: red">
                                                     *</span></label>
                                             <input type="number" id="phone" value="{{ old('phone', $user->phone) }}"
                                                 class="form-control  border-dark" name="phone" />
+                                                @error('phone')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
                                             <label class="form-label">Age<span class="" style="color: red">
                                                     *</span></label>
                                             <input type="number" id="age" value="{{ old('age', $user->age) }}"
                                                 class="form-control  border-dark" name="age" />
+                                                @error('age')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
                                             <label class="form-label">Role<span class="" style="color: red">
@@ -92,7 +110,9 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-
+                                            @error('role')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

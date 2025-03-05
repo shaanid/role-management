@@ -25,4 +25,5 @@ Route::prefix('roles')->group(function () {
     Route::get('list', [RolesController::class, 'list'])->name('roles.list');
     Route::get('edit/{id}', [RolesController::class, 'edit'])->name('roles.edit');
     Route::put('update/{id}', [RolesController::class, 'update'])->name('roles.update');
+    Route::get('destroy/{id}', [RolesController::class, 'destroy'])->name('roles.destroy');
 });

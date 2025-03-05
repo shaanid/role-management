@@ -20,12 +20,18 @@ class RolesAndPermissionSeeder extends Seeder
         Role::create(['name' => 'user']);
 
         // Permissions
-        Permission::create(['name' => 'create-role']);
+        Permission::create(['name' => 'list-role']);
         Permission::create(['name' => 'edit-role']);
         Permission::create(['name' => 'delete-role']);
 
+        Permission::create(['name' => 'list-user']);
+        Permission::create(['name' => 'add-user']);
+        Permission::create(['name' => 'edit-user']);
+        Permission::create(['name' => 'delete-user']);
+
         // Assign permissions to roles
-        Role::findByName('admin')->givePermissionTo(['create-role', 'edit-role', 'delete-role']);
+        Role::findByName('admin')->givePermissionTo(['list-role', 'edit-role', 'delete-role', 'list-user', 'add-user', 'edit-user', 'delete-user']);
+        Role::findByName('user')->givePermissionTo(['add-user',]);
 
         $admin = User::firstOrCreate([
             'email' => 'admin@example.com',

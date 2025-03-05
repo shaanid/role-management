@@ -22,9 +22,16 @@ class RolesController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $edit = '<a href="' . route('roles.edit', $data->id) . '" class="btn btn-primary"><i class="fe fe-edit-2"></i></a>';
-
-                return $edit;
+                $edit = '';
+                $delete = '';
+                if(auth()->user()->hasPermissionTo('edit-role')){
+                    $edit = '<a href="' . route('roles.edit', $data->id) . '" class="btn btn-primary"><i class="fe fe-edit-2"></i></a>';
+                }
+                if(auth()->user()->hasPermissionTo('edit-role')){
+                    $delete = '<a href="' . route('roles.destroy', $data->id) . '" class="btn btn-primary" onclick="return confirm(\'Are you sure you want to delete this role?\')"><i class="fe fe-trash-2"></i></a>';
+                }
+                
+                return $edit . ' ' . $delete;
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -43,5 +50,13 @@ class RolesController extends Controller
         $role->syncPermissions($request->permissions);
 
         return redirect()->route('roles.index')->with('success', 'Permissions updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $role = Role::find($id);
+        $role->delete();
+
+        return redirect()->back()->with('success', 'Deleted successfully!');
     }
 }

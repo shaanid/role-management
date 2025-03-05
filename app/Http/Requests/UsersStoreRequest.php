@@ -25,9 +25,9 @@ class UsersStoreRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'required | min:8',
             'address' => 'required',
-            'phone' => 'required',
+            'phone' => 'required | min:10',
             'age' => 'required',
             'role' => 'required',
         ];

@@ -76,6 +76,16 @@
 @section('js')
     <script>
         $(document).ready(function() {
+            @if (Session::has('success'))
+                toastr.success("{{ Session::get('success') }}");
+            @endif
+
+            @if (Session::has('error'))
+                toastr.error("{{ Session::get('error') }}");
+            @endif
+        });
+
+        $(document).ready(function() {
             $('#roles-table').DataTable({
                 processing: true,
                 serverSide: true,

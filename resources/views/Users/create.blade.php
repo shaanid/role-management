@@ -1,16 +1,16 @@
 @extends('Layouts.app')
 @section('css')
-<style>
-    .doctors {
-        border-color: black;
-    }
+    <style>
+        .doctors {
+            border-color: black;
+        }
 
-    .errorWrapper {
-        background-color: red;
-        color: white;
-        border-radius: 10px;
-    }
-</style>
+        .errorWrapper {
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="page">
@@ -42,41 +42,80 @@
                                 <div class="col-lg-12 col-xl-12">
                                     <div class="patientDetails row">
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">First Name<span class="" style="color: red"> *</span></label>
-                                            <input type="text" id="first_name" class="form-control border-dark" name="first_name"/>
+                                            <label class="form-label">First Name<span class="" style="color: red">
+                                                    *</span></label>
+                                            <input type="text" id="first_name" class="form-control border-dark"
+                                                name="first_name" />
+                                            @error('first_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">Last Name<span class="" style="color: red"> *</span></label>
-                                            <input type="text" id="last_name" class="form-control  border-dark" name="last_name"/>
+                                            <label class="form-label">Last Name<span class="" style="color: red">
+                                                    *</span></label>
+                                            <input type="text" id="last_name" class="form-control  border-dark"
+                                                name="last_name" />
+                                            @error('last_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">Email<span class="" style="color: red"> *</span></label>
-                                            <input type="text" id="email" class="form-control  border-dark" name="email"/>
+                                            <label class="form-label">Email<span class="" style="color: red">
+                                                    *</span></label>
+                                            <input type="text" id="email" class="form-control  border-dark"
+                                                name="email" />
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">Password<span class="" style="color: red"> *</span></label>
-                                            <input type="password" id="password" class="form-control  border-dark" name="password"/>
+                                            <label class="form-label">Password<span class="" style="color: red">
+                                                    *</span></label>
+                                            <input type="password" id="password" class="form-control  border-dark"
+                                                name="password" />
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">Address<span class="" style="color: red"> *</span></label>
-                                            <input type="text" id="address" class="form-control  border-dark" name="address"/>
+                                            <label class="form-label">Address<span class="" style="color: red">
+                                                    *</span></label>
+                                            <input type="text" id="address" class="form-control  border-dark"
+                                                name="address" />
+                                            @error('address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">Phone<span class="" style="color: red"> *</span></label>
-                                            <input type="number" id="phone" class="form-control  border-dark" name="phone"/>
+                                            <label class="form-label">Phone<span class="" style="color: red">
+                                                    *</span></label>
+                                            <input type="number" id="phone" class="form-control  border-dark"
+                                                name="phone" />
+                                            @error('phone')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">Age<span class="" style="color: red"> *</span></label>
-                                            <input type="number" id="age" class="form-control  border-dark" name="age"/>
+                                            <label class="form-label">Age<span class="" style="color: red">
+                                                    *</span></label>
+                                            <input type="number" id="age" class="form-control  border-dark"
+                                                name="age" />
+                                            @error('age')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-outline col-sm-3">
-                                            <label class="form-label">Role<span class="" style="color: red"> *</span></label>
+                                            <label class="form-label">Role<span class="" style="color: red">
+                                                    *</span></label>
                                             <select class="form-control border-dark" name="role">
                                                 <option value=""> -- SELECT -- </option>
-                                                @foreach($roles as $role)
+                                                @foreach ($roles as $role)
                                                     <option value="{{ $role->name }}"> {{ $role->name }} </option>
                                                 @endforeach
                                             </select>
+                                            @error('role')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -104,8 +143,6 @@
         </div>
     </div>
 
-    @section('js')
-        <script>
-
-        </script>
-    @endsection
+@section('js')
+    <script></script>
+@endsection
